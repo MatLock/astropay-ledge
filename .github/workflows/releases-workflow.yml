@@ -2,6 +2,8 @@ name: releases-workflow.yml
 on:
   release:
     types: [ published ]
+env:
+  DOCKER_HUB_IMAGE_ID: astropay/backend:ledge-service-${{ github.sha }}
 
 jobs:
   MainWorkflow:
