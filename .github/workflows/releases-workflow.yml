@@ -3,7 +3,7 @@ on:
   release:
     types: [ published ]
 env:
-  DOCKER_HUB_IMAGE_ID: astropay/backend:ledge-service-${{ github.sha }}
+  DOCKER_HUB_IMAGE_ID: matlock0o/astropay:ledge-service-${{ github.sha }}
 
 jobs:
   MainWorkflow:
