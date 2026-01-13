@@ -22,6 +22,9 @@ public class Account {
   private Long id;
   @Column(name = "amount", nullable = false)
   private Long amount;
+  @Column(name = "version", nullable = false)
+  @Version
+  private Long version;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private User user;
