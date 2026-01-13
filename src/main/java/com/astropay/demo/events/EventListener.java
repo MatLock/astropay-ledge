@@ -15,6 +15,7 @@ public class EventListener {
       phase = TransactionPhase.AFTER_COMMIT
   )
   public void onTransactionCompleted(Transaction transaction) {
+    // here it could be the kafka sender for transaction evaluation
     log.info("message= Transaction event sent, txId={}, amount={}", transaction.getId(), transaction.getAmount());
   }
 
