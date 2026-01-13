@@ -6,7 +6,7 @@ on:
 jobs:
   MainWorkflow:
     name: Main Workflow
-    runs-on: k8s-runner-azure-prod
+    runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
