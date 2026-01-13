@@ -47,7 +47,7 @@ jobs:
           title: '# :cop: Coverage Report'
           pass-emoji: ':green_circle:'
           fail-emoji: ':x:'
-      - name: Fail PR if overall coverage is less than 45%
+      - name: Fail PR if overall coverage is less than 60%
         if: ${{ github.event_name == 'pull_request' && steps.jacoco.outputs.coverage-overall < 60.0 }}
         uses: actions/github-script@v6
         with:
