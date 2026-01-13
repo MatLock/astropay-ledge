@@ -2,7 +2,7 @@ spring:
   application:
     name: demo-project
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3307}/${MYSQL_DBNAME:astropay}?allowMultiQueries=true&autoReconnect=true
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DBNAME:astropay}?allowMultiQueries=true&autoReconnect=true
     username: ${MYSQL_USER:user} #localdocker credentials
     password: ${MYSQL_PASSWORD:password}
     driverClassName: com.mysql.cj.jdbc.Driver
