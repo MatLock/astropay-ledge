@@ -14,6 +14,7 @@ class AccountTest {
   private static final Long TEST_DEBIT_AMOUNT = 2000L;
   private static final Long TEST_CREDIT_AMOUNT = 5000L;
   private static final OffsetDateTime TEST_CREATED_ON = OffsetDateTime.now();
+  private static final Long VERSION = 0L;
 
   private Account account;
   private User testUser;
@@ -33,7 +34,7 @@ class AccountTest {
   @Test
   void allArgsConstructor_ShouldCreateInstanceWithAllFields() {
     // Act
-    Account testAccount = new Account(TEST_ID, TEST_AMOUNT, testUser, TEST_CREATED_ON);
+    Account testAccount = new Account(TEST_ID, TEST_AMOUNT,VERSION, testUser, TEST_CREATED_ON);
 
     // Assert
     assertNotNull(testAccount);
