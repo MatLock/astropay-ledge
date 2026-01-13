@@ -14,5 +14,4 @@ public class AppBeansConfig {
     mapper.registerModule(new JavaTimeModule());
     return mapper;
   }
-
 }
