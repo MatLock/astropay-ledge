@@ -1,0 +1,55 @@
+name: branch-and-workflow.yml
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+
+jobs:
+  BuildAndTest:
+    name: BuildAndTest
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Java Environment
+        uses: actions/setup-java@v2
+        with:
+          java-version: 21
+          distribution: adopt
+          architecture: x64
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.5
+        with:
+          maven-version: 3.8.2
+      - name: Run Tests
+        run: mvn clean test
+      - name: Upload Jacoco Report
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
+      - name: Add coverage to PR
+        id: jacoco
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: madrapps/jacoco-report@v1.7.2
+        with:
+          paths: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 40
+          min-coverage-changed-files: 60
+          title: '# :cop: Coverage Report'
+          pass-emoji: ':green_circle:'
+          fail-emoji: ':x:'
+      - name: Fail PR if overall coverage is less than 45%
+        if: ${{ github.event_name == 'pull_request' && steps.jacoco.outputs.coverage-overall < 60.0 }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('Overall coverage is less than 60%!')

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0.44
+    container_name: demodb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=astropay
+
+  app:
+    container_name: ledge
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=user
+      - MYSQL_PORT=3306
+      - MYSQL_PASSWORD=password
+      - MYSQL_DBNAME=astropay
+      - SVC_LOG_LEVEL=INFO

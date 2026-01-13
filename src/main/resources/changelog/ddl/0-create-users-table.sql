@@ -1,0 +1,7 @@
+CREATE TABLE users(
+    id    BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name  VARCHAR(45)     NOT NULL,
+    email VARCHAR(255)    NOT NULL,
+    created_on   TIMESTAMP       NOT NULL DEFAULT NOW(),
+    UNIQUE(email)
+);

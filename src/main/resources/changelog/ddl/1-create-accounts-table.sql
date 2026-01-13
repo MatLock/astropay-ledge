@@ -1,0 +1,8 @@
+CREATE TABLE accounts (
+  id BIGINT UNSIGNED AUTO_INCREMENT,
+  user_id BIGINT UNSIGNED NOT NULL,
+  amount BIGINT NOT NULL,
+  created_on   TIMESTAMP       NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id),
+  CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id)
+);
