@@ -368,7 +368,7 @@ The project uses GitHub Actions for continuous integration and deployment:
 - `id-token: write` - OIDC authentication
 
 ### Example
-PR with code coverage check [here](https://github.com/MatLock/astropay-ledge/pull/1)
+PR with code coverage check [here](https://github.com/MatLock/astropay-ledge/pull/2)
 Releases with PRs [here](https://github.com/MatLock/astropay-ledge/releases)
 
 ### Coverage Requirements

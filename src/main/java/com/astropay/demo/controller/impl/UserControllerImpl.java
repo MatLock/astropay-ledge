@@ -36,7 +36,6 @@ public class UserControllerImpl implements UserController {
     return ResponseEntity.ok(new GlobalRestResponse<>(Boolean.TRUE, user));
   }
 
-
   private UserResponse toUser(User user) {
     return UserResponse.builder()
         .id(user.getId())
@@ -45,6 +44,4 @@ public class UserControllerImpl implements UserController {
         .createdOn(user.getCreatedOn())
         .build();
   }
-
-
 }

@@ -17,7 +17,6 @@ public class TransactionControllerImpl implements TransactionController {
     this.service = service;
   }
 
-
   @Override
   public ResponseEntity<GlobalRestResponse<Void>> create(TransactionRequest request) {
     service.executeTransaction(request.getFromAccount(), request.getToAccount(), request.getAmount());
