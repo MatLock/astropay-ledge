@@ -15,6 +15,7 @@ A robust RESTful API application built with Spring Boot for managing users, acco
 - [Testing](#testing)
 - [CI/CD](#cicd)
 - [UML](#uml-diagram)
+- [Secuence Diagram](#secuence-diagram-to-create-a-transaction)
 - [DB Schema](#database-schema)
 
 ## Features
@@ -407,6 +408,9 @@ curl http://localhost:8081/prometheus
 ## UML Diagram
 
 ![UML Diagram](uml_classes.png)
+
+## Secuence Diagram (to create a transaction)
+![Secuence Diagram - createTransaction](sequence_diagram.png)
 
 ## Database Schema
 
