@@ -38,7 +38,7 @@ public interface UserController {
               schema = @Schema(implementation = ErrorRestResponse.class),
               examples = @ExampleObject(value = "{\"success\": false, \"data\": {\"name\": \"name must not be empty or null\", \"email\": \"email not valid\"}, \"reason\": \"Invalid Fields Found\"}")))
   })
-  @PostMapping("/create")
+  @PostMapping("")
   ResponseEntity<GlobalRestResponse<UserResponse>> create(
       @Parameter(description = "User information for creating a new user", required = true)
       @RequestBody @Valid UserRequest user);

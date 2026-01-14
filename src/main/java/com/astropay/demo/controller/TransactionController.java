@@ -41,7 +41,7 @@ public interface TransactionController {
               schema = @Schema(implementation = ErrorRestResponse.class),
               examples = @ExampleObject(value = "{\"success\": false, \"data\": null, \"reason\": \"Account not found\"}")))
   })
-  @PostMapping("/create")
+  @PostMapping("")
   ResponseEntity<GlobalRestResponse<Void>> create(
       @Parameter(description = "Transaction details including fromAccount, toAccount, and amount", required = true)
       @Valid @RequestBody TransactionRequest request);

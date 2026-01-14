@@ -220,12 +220,12 @@ Interactive API documentation is available at:
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/astropay/users/create` | Create a new user |
+| POST | `/astropay/users` | Create a new user |
 | GET | `/astropay/users/{id}` | Get user by ID |
 
 **Example: Create User**
 ```bash
-curl -X POST http://localhost:8080/astropay/users/create \
+curl -X POST http://localhost:8080/astropay/users \
   -H "Content-Type: application/json" \
   -d '{
     "name": "John Doe",
@@ -237,12 +237,12 @@ curl -X POST http://localhost:8080/astropay/users/create \
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/astropay/accounts/create` | Create a new account |
+| POST | `/astropay/accounts` | Create a new account |
 | GET | `/astropay/accounts/{id}` | Get account by ID |
 
 **Example: Create Account**
 ```bash
-curl -X POST http://localhost:8080/astropay/accounts/create \
+curl -X POST http://localhost:8080/astropay/accounts \
   -H "Content-Type: application/json" \
   -d '{
     "userId": 1,
@@ -254,11 +254,11 @@ curl -X POST http://localhost:8080/astropay/accounts/create \
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/astropay/transactions/create` | Create a transaction |
+| POST | `/astropay/transactions` | Create a transaction |
 
 **Example: Create Transaction**
 ```bash
-curl -X POST http://localhost:8080/astropay/transactions/create \
+curl -X POST http://localhost:8080/astropay/transactions \
   -H "Content-Type: application/json" \
   -d '{
     "fromAccount": 1,
