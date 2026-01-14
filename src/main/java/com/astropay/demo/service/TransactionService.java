@@ -45,9 +45,6 @@ public class TransactionService {
         .createdOn(OffsetDateTime.now())
         .build();
     transactionRepository.save(transaction);
-    accountRepository.save(from);
-    // an exception throw here should rollback previous db operation
-    accountRepository.save(to);
     applicationEventPublisher.publishEvent(transaction);
   }
 
