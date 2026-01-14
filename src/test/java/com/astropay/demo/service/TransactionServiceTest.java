@@ -65,7 +65,6 @@ class TransactionServiceTest {
     when(accountRepository.findById(TEST_FROM_ACCOUNT_ID)).thenReturn(Optional.of(fromAccount));
     when(accountRepository.findById(TEST_TO_ACCOUNT_ID)).thenReturn(Optional.of(toAccount));
     when(transactionRepository.save(any(Transaction.class))).thenReturn(new Transaction());
-    when(accountRepository.save(any(Account.class))).thenReturn(fromAccount);
 
     // Act
     transactionService.executeTransaction(TEST_FROM_ACCOUNT_ID, TEST_TO_ACCOUNT_ID, TEST_TRANSACTION_AMOUNT);
@@ -74,7 +73,6 @@ class TransactionServiceTest {
     verify(accountRepository, times(1)).findById(TEST_FROM_ACCOUNT_ID);
     verify(accountRepository, times(1)).findById(TEST_TO_ACCOUNT_ID);
     verify(transactionRepository, times(1)).save(any(Transaction.class));
-    verify(accountRepository, times(2)).save(any(Account.class));
     verify(applicationEventPublisher, times(1)).publishEvent(any(Transaction.class));
   }
 
@@ -84,7 +82,6 @@ class TransactionServiceTest {
     when(accountRepository.findById(TEST_FROM_ACCOUNT_ID)).thenReturn(Optional.of(fromAccount));
     when(accountRepository.findById(TEST_TO_ACCOUNT_ID)).thenReturn(Optional.of(toAccount));
     when(transactionRepository.save(any(Transaction.class))).thenReturn(new Transaction());
-    when(accountRepository.save(any(Account.class))).thenReturn(fromAccount);
 
     Long expectedFromBalance = TEST_FROM_ACCOUNT_BALANCE - TEST_TRANSACTION_AMOUNT;
     Long expectedToBalance = TEST_TO_ACCOUNT_BALANCE + TEST_TRANSACTION_AMOUNT;
@@ -167,7 +164,6 @@ class TransactionServiceTest {
     when(accountRepository.findById(TEST_FROM_ACCOUNT_ID)).thenReturn(Optional.of(fromAccount));
     when(accountRepository.findById(TEST_TO_ACCOUNT_ID)).thenReturn(Optional.of(toAccount));
     when(transactionRepository.save(any(Transaction.class))).thenReturn(new Transaction());
-    when(accountRepository.save(any(Account.class))).thenReturn(fromAccount);
 
     // Act
     transactionService.executeTransaction(TEST_FROM_ACCOUNT_ID, TEST_TO_ACCOUNT_ID, TEST_TRANSACTION_AMOUNT);
@@ -187,7 +183,6 @@ class TransactionServiceTest {
     when(accountRepository.findById(TEST_FROM_ACCOUNT_ID)).thenReturn(Optional.of(fromAccount));
     when(accountRepository.findById(TEST_TO_ACCOUNT_ID)).thenReturn(Optional.of(toAccount));
     when(transactionRepository.save(any(Transaction.class))).thenReturn(new Transaction());
-    when(accountRepository.save(any(Account.class))).thenReturn(fromAccount);
 
     // Act
     transactionService.executeTransaction(TEST_FROM_ACCOUNT_ID, TEST_TO_ACCOUNT_ID, TEST_TRANSACTION_AMOUNT);
@@ -202,13 +197,15 @@ class TransactionServiceTest {
     when(accountRepository.findById(TEST_FROM_ACCOUNT_ID)).thenReturn(Optional.of(fromAccount));
     when(accountRepository.findById(TEST_TO_ACCOUNT_ID)).thenReturn(Optional.of(toAccount));
     when(transactionRepository.save(any(Transaction.class))).thenReturn(new Transaction());
-    when(accountRepository.save(any(Account.class))).thenReturn(fromAccount, toAccount);
+
+    Long expectedFromBalance = TEST_FROM_ACCOUNT_BALANCE - TEST_TRANSACTION_AMOUNT;
+    Long expectedToBalance = TEST_TO_ACCOUNT_BALANCE + TEST_TRANSACTION_AMOUNT;
 
     // Act
     transactionService.executeTransaction(TEST_FROM_ACCOUNT_ID, TEST_TO_ACCOUNT_ID, TEST_TRANSACTION_AMOUNT);
 
     // Assert
-    verify(accountRepository).save(fromAccount);
-    verify(accountRepository).save(toAccount);
+    assertEquals(expectedFromBalance, fromAccount.getAmount());
+    assertEquals(expectedToBalance, toAccount.getAmount());
   }
 }
