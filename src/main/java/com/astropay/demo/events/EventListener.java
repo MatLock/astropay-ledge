@@ -17,6 +17,14 @@ public class EventListener {
   public void onTransactionCompleted(Transaction transaction) {
     // here it could be the kafka sender for transaction evaluation
     log.info("message= Transaction event sent, txId={}, amount={}", transaction.getId(), transaction.getAmount());
+    /***
+     * try{
+     * send event
+     * }catch(Exception e){
+     * if service is down or it fails. event can be stored in DB or somewhere else to implement a dead letter queue
+     * for further processing when event service is back online
+     * }
+     */
   }
 
 }
